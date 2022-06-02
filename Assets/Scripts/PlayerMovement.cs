@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
 	public float movementSpeed;
 	public float rotationSpeed;
+	public float jumpHeight;
 
 	// Start is called before the first frame update
 	void Start()
@@ -32,5 +33,9 @@ public class PlayerMovement : MonoBehaviour
 		{
 			transform.position -= new Vector3(0, 0, movementSpeed);
 		}
-	}
-}
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			transform.position = new Vector3(0, jumpHeight, 0);
+		}
+      }
+   }
