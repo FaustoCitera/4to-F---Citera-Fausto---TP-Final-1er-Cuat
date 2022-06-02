@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player2Movement : MonoBehaviour
 {
 	public float movementSpeed;
-	public float rotationSpeed;
 
-	// Start is called before the first frame update
-	void Start()
+    // Start is called before the first frame update
+    void Start()
     {
         
     }
@@ -16,19 +15,19 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetKey(KeyCode.D))
+		if (Input.GetKey(KeyCode.RightArrow))
 		{
 			transform.position += new Vector3(movementSpeed, 0, 0);
 		}
-		if (Input.GetKey(KeyCode.A))
+		if (Input.GetKey(KeyCode.LeftArrow))
 		{
 			transform.position -= new Vector3(movementSpeed, 0, 0);
 		}
-		if (Input.GetKey(KeyCode.W))
+		if (Input.GetKey(KeyCode.UpArrow))
 		{
 			transform.position += new Vector3(0, 0, movementSpeed);
 		}
-		if (Input.GetKey(KeyCode.S))
+		if (Input.GetKey(KeyCode.DownArrow))
 		{
 			transform.position -= new Vector3(0, 0, movementSpeed);
 		}
