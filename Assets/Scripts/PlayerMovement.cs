@@ -5,13 +5,17 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 	public float movementSpeed;
-	public float rotationSpeed;
-	public float jumpHeight;
+	public float jumpForce;
+	public int maxJumps;
+
+	int hasJump;
+	Rigidbody rb;
 
 	// Start is called before the first frame update
 	void Start()
     {
-        
+		hasJump = maxJumps;
+		rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -33,9 +37,17 @@ public class PlayerMovement : MonoBehaviour
 		{
 			transform.position -= new Vector3(0, 0, movementSpeed);
 		}
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (Input.GetKeyDown(KeyCode.Space) && hasJump > 0)
 		{
-			transform.position = new Vector3(0, jumpHeight, 0);
+			rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+			hasJump--;
 		}
-      }
-   }
+	}
+	void OnCollisionEnter(Collision col)
+	{
+		if (col.gameObject.tag == "ground")
+		{
+			hasJump = maxJumps;
+		}
+	}
+}

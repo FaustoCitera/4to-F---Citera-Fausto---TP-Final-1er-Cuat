@@ -5,12 +5,18 @@ using UnityEngine;
 public class Player2Movement : MonoBehaviour
 {
 	public float movementSpeed;
+	public float jumpForce;
+	public int maxJumps;
 
-    // Start is called before the first frame update
-    void Start()
+	int hasJump;
+	Rigidbody rb;
+
+	// Start is called before the first frame update
+	void Start()
     {
-        
-    }
+		hasJump = maxJumps;
+		rb = GetComponent<Rigidbody>();
+	}
 
     // Update is called once per frame
     void Update()
@@ -30,6 +36,18 @@ public class Player2Movement : MonoBehaviour
 		if (Input.GetKey(KeyCode.DownArrow))
 		{
 			transform.position -= new Vector3(0, 0, movementSpeed);
+		}
+		if (Input.GetKeyDown(KeyCode.RightShift) && hasJump > 0)
+		{
+			rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+			hasJump--;
+		}
+	}
+	void OnCollisionEnter(Collision col)
+	{
+		if (col.gameObject.tag == "ground")
+		{
+			hasJump = maxJumps;
 		}
 	}
 }
