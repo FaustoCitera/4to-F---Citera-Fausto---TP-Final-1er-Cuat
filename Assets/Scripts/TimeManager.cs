@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TimeManager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class TimeManager : MonoBehaviour
 	void Start()
 	{
 		elapsedTime = 0;
-		isCounting = false;
+		isCounting = true;
 	}
 
 	// Update is called once per frame
@@ -27,6 +28,10 @@ public class TimeManager : MonoBehaviour
 		if (isCounting)
 		{
 			elapsedTime += Time.deltaTime;
+		}
+		if(elapsedTime > 45)
+		{
+			SceneManager.LoadScene("Player1Wins");
 		}
 		
 	}

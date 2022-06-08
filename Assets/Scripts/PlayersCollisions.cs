@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayersCollisions : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class PlayersCollisions : MonoBehaviour
 		if (col.gameObject.tag == "Player1")
 		{
 			GetComponent<MeshRenderer>().material.color = Color.blue;
+		}
+		if (col.gameObject.tag == "Player1")
+		{
+			SceneManager.LoadScene("Player2Wins");
 		}
 	}
 }
