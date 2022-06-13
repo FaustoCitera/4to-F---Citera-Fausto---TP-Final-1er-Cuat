@@ -1,26 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WhileClones : MonoBehaviour
 {
-	public GameObject prefab;
-	public GameObject spawnPoint;
-
-	// Start is called before the first frame update
-	void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       while (Player1Wins = True)
+	public GameObject objectToClone;
+	public int cloneAmount;
+	public void CloneObject()
+	{
+		int contador = 0;
+		while (contador < cloneAmount)
 		{
-			GameObject clon;
-			clon = Instantiate(prefab);
-			clon.transform.position = spawnPoint.transform.position - spawnPoint.transform.forward; ;
+			Instantiate(objectToClone);
+			contador++;
 		}
-    }
+	}
 }
