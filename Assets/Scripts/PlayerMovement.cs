@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerMovement : MonoBehaviour
 {
+	AudioSource source;
+	public AudioClip Salto;
 	public float movementSpeed;
 	public float jumpForce;
 	public int maxJumps;
-
 	int hasJump;
 	Rigidbody rb;
 
@@ -16,7 +18,8 @@ public class PlayerMovement : MonoBehaviour
     {
 		hasJump = maxJumps;
 		rb = GetComponent<Rigidbody>();
-    }
+		source = GetComponent<AudioSource>();
+	}
 
     // Update is called once per frame
     void Update()
@@ -41,6 +44,8 @@ public class PlayerMovement : MonoBehaviour
 		{
 			rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 			hasJump--;
+			source.clip = Salto;
+			source.Play();
 		}
 	}
 	void OnCollisionEnter(Collision col)

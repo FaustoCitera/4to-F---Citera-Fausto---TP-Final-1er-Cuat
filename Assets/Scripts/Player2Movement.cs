@@ -7,6 +7,8 @@ public class Player2Movement : MonoBehaviour
 	public float movementSpeed;
 	public float jumpForce;
 	public int maxJumps;
+	AudioSource source;
+	public AudioClip Salto;
 
 	int hasJump;
 	Rigidbody rb;
@@ -16,6 +18,7 @@ public class Player2Movement : MonoBehaviour
     {
 		hasJump = maxJumps;
 		rb = GetComponent<Rigidbody>();
+		source = GetComponent<AudioSource>();
 	}
 
     // Update is called once per frame
@@ -41,6 +44,8 @@ public class Player2Movement : MonoBehaviour
 		{
 			rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 			hasJump--;
+			source.clip = Salto;
+			source.Play();
 		}
 	}
 	void OnCollisionEnter(Collision col)
